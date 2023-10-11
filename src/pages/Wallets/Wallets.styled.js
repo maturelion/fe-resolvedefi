@@ -33,7 +33,8 @@ export const WalletCard = styled.div`
 
   border-radius: 8px;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 
@@ -49,6 +50,7 @@ export const WalletCard = styled.div`
   }
 
   @media only screen and (max-width: 425px) {
+    padding: 0px;
     & > img {
       border-radius: 50%;
       width: 40px;
@@ -69,5 +71,16 @@ export const WalletCard = styled.div`
     & > div {
       font-size: 12px;
     }
+  }
+`;
+
+export const WalletH1 = styled.h1`
+  font-weight: 600px;
+  font-size: 2.5rem;
+  line-height: 0px;
+  margin-block: 32px 8px;
+
+  @media only screen and (max-width: 425px) {
+    font-size: unset;
   }
 `;

