@@ -317,7 +317,10 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
             marginLeft: "auto",
             display: "flex",
           }}
-          handleClick={() => setShowConnectModal(false)}
+          handleClick={() => {
+            setShowConnectModal(false);
+            setConnectIsLoading(false);
+          }}
         >
           cancel
         </Button>
