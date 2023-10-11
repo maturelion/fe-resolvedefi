@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   WalletCard,
   WalletListContainer,
   WalletsStyle,
 } from "./Wallets.styled";
-import LoadingModal from "./components/LoadingModal/LoadingModal";
-import { useState } from "react";
-import ConnectModal from "./components/ConnectModal/ConnectModal";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import ConnectModal from "../../components/ConnectModal/ConnectModal";
 
 const Wallets = () => {
   const [selectedWallet, setSelectedWallet] = useState(null);

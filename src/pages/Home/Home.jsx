@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Button from "./components/Button/Button";
-import Card from "./components/Card/Card";
-import NavBar from "./components/Navbar/Navbar";
+import Button from "../../components/Button/Button";
+import Card from "../../components/Card/Card";
+import NavBar from "../../components/Navbar/Navbar";
 import {
   HomeCardContainer,
   HomeHeroH1,
