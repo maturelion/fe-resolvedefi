@@ -1,13 +1,82 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../components/Button/Button.jsx";
-import Card from "../components/Card/Card.jsx";
-import NavBar from "../components/Navbar/Navbar.jsx";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   HomeCardContainer,
   HomeHeroH1,
   HomeHeroH2,
   HomeStyle,
+  NavBarStyle,
+  NavBarStyleLi,
+  NavBarStyleUl,
 } from "./Home.styled";
+import styled from "styled-components";
+
+// eslint-disable-next-line react/prop-types
+const Card = ({ cardDetail }) => {
+  const navigate = useNavigate();
+  return (
+    // eslint-disable-next-line react/prop-types
+    <CardStyle onClick={() => navigate(cardDetail.link)}>
+      <h2>
+        {
+          // eslint-disable-next-line react/prop-types
+          cardDetail.title
+        }
+      </h2>
+      <p style={{ paddingInline: "20px", textAlign: "center" }}>
+        {
+          // eslint-disable-next-line react/prop-types
+          cardDetail.description
+        }
+      </p>
+      <Button
+        handleClick={
+          // eslint-disable-next-line react/prop-types
+          () => navigate(cardDetail.link)
+        }
+      >
+        {
+          // eslint-disable-next-line react/prop-types
+          cardDetail.buttonText
+        }
+      </Button>
+    </CardStyle>
+  );
+};
+
+// eslint-disable-next-line react/prop-types
+const Button = ({ children, handleClick, disabled, style, type }) => {
+  return (
+    <ButtonStyle
+      type={type}
+      onClick={handleClick}
+      disabled={disabled}
+      style={{ ...style }}
+    >
+      {children}
+    </ButtonStyle>
+  );
+};
+
+const NavBar = () => {
+  return (
+    <NavBarStyle>
+      <NavBarStyleUl>
+        <NavBarStyleLi>
+          <NavLink to={"/"}>Home</NavLink>
+        </NavBarStyleLi>
+        <NavBarStyleLi>
+          <NavLink to={"/wallets"}>Connect</NavLink>
+        </NavBarStyleLi>
+        <NavBarStyleLi>
+          <NavLink to={"/wallets/#"}>Contact Us</NavLink>
+        </NavBarStyleLi>
+        <NavBarStyleLi>
+          <NavLink to={"/wallets/#"}>FAQ</NavLink>
+        </NavBarStyleLi>
+      </NavBarStyleUl>
+    </NavBarStyle>
+  );
+};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -187,4 +256,31 @@ const Home = () => {
   );
 };
 
+const ButtonStyle = styled.button`
+  background-color: #bc3fea;
+  color: white;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  margin: 10px 0px;
+  cursor: pointer;
+
+  &:disabled {
+    color: grey;
+    opacity: 0.7;
+    cursor: default;
+  }
+`;
+
+const CardStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+`;
 export default Home;
