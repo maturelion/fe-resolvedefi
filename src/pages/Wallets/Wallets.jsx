@@ -4,9 +4,9 @@ import {
   WalletListContainer,
   WalletsStyle,
 } from "./Wallets.styled";
-import LoadingModal from "../components/LoadingModal/LoadingModal";
+import LoadingModal from "./components/LoadingModal/LoadingModal";
 import { useState } from "react";
-import ConnectModal from "../components/ConnectModal/ConnectModal";
+import ConnectModal from "./components/ConnectModal/ConnectModal";
 
 const Wallets = () => {
   const [selectedWallet, setSelectedWallet] = useState(null);
