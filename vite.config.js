@@ -7,9 +7,9 @@ export default defineConfig({
   rootDirs: ["/"],
   resolve: {
     alias: [
-      { find: "@assets", replacement: "/src/assets" },
-      { find: "@components", replacement: "/src/components" },
-      { find: "@pages", replacement: "/src/pages" },
+      { find: "@assets", replacement: "src/assets" },
+      { find: "@components", replacement: "src/components" },
+      { find: "@pages", replacement: "src/pages" },
     ],
   },
 });
