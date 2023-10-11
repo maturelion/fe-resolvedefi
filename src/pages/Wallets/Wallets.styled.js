@@ -14,9 +14,10 @@ export const WalletListContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 40px;
-
+  
   @media only screen and (max-width: 425px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
   @media only screen and (min-width: 426px) and (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
@@ -51,6 +52,8 @@ export const WalletCard = styled.div`
 
   @media only screen and (max-width: 425px) {
     padding: 0px;
+
+
     & > img {
       border-radius: 50%;
       width: 40px;
